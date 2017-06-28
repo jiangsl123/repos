@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>学院表单</title>
+</head>
+<body style="width:1024px;margin:auto">
+		<header th:replace="@{/common}::header" ></header>
+		
+		<h1 align="center">学院表单</h1>
+		<form th:action="@{/college}" method="post" style="text-align:center"
+			th:object="${college}">
+			<input type="hidden" th:field="*{id}" required="requried" />
+			
+			<div style="margin:10px auto 10px auto">
+				<input type="text" required="required" 
+					placeholder="请输入学院简称" value="hj" 
+					th:field = "*{abbr}"/>
+			</div>
+			<div style="margin:10px auto 10px auto">
+				<input type="text" required="required" 
+					placeholder="请输入学院名称" value="环境资源与工程学院" 
+					th:field= "*{name}"/>
+			</div>
+			<div style="margin:10px auto 10px auto">
+				<input type="reset" />
+				<input type="submit" value="提交" />
+			</div>
+		</form>
+	<footer th:replace="@{/common}::footer" ></footer>
+</body>
+</html>

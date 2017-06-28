@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>借阅列表</title>
+<script th:src="@{/js/jquery-3.1.1.min.js}"></script>
+</head>
+<body style="width:1024px;margin:auto">
+<img th:src="@{/images/logo.jpg}" />
+	       <nav bgcolor="#CCFF00">
+				<a th:href="@{/books/}">图书</a> 
+			</nav>
+					<table border="1" align="center" width="100%">
+			<thead>
+				<tr bgcolor="green">
+					<td align="center">序号</td>
+					<td>数量</td>
+					<td>书籍</td>
+					<td>名字</td>
+				
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="college,iterState:${brrow}">
+					<td th:text="${iterState.count}" align="center">1</td>
+					<td th:text="${college.num}"></td>
+					<td th:text="${college.brrowbook}"></td>
+					<td th:text="${college.brrowname}"></td>
+				</tr>
+			</tbody>
+	</table>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>书籍列表</title>
+</head>
+<body style="width:1024px;margin:auto">
+		<header th:replace="@{/common}::header" ></header>
+		<h1 align="center">书籍信息</h1>
+		<img th:src="@{'/'+${books.num}}" width="60" height="80"/>
+			<span>书名：</span><span th:text="${books.bookname}"></span>
+ 			<span>出版日期：  </span><span th:text="${books.publicationday}">出版日期</span>
+			<span>学科：  </span><span th:text="${books.subjects}?${books.subjects.name}:null">所属学科</span>
+			<span>学院：  </span><span th:text="${books.subjects.college}?${books.subjects.college.name}:null">所属学院</span>			
+	<footer th:replace="@{/common}::footer" ></footer>
+</body>
+</html>

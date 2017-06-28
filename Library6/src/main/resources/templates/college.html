@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>学院列表</title>
+</head>
+<body style="width:1024px;margin:auto">
+		<header th:replace="@{/common}::header" ></header>
+		<h1 align="center">学院列表</h1>
+		<a th:href="@{/collegeForm}">添加学院</a> 
+		<table border="1" align="center" width="100%">
+			<thead>
+				<tr bgcolor="green">
+					<td align="center">序号</td>
+					<td>ID</td>
+					<td>简称</td>
+					<td>名字</td>
+					<td>操作</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="college,iterState:${colleges}">
+					<td th:text="${iterState.count}" align="center">1</td>
+					<td th:text="${college.id}">id</td>
+					<td th:text="${college.abbr}">信息学院</td>
+					<td th:text="${college.name}">信息工程学院</td>
+					<td>
+						<a th:href="@{/collegeForm(id=${college.id})}">修改</a>
+						<a th:href="@{'/delCollege/'+${college.id}}">删除</a>
+					</td>
+				</tr>
+			</tbody>
+	</table>
+	<footer th:replace="@{/common}::footer" ></footer>
+</body>
+</html>

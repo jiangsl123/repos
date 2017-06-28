@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>书籍列表</title>
+<script th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script type="text/javascript">
+           alert("图书库存不足，请添加");
+</script>
+</head>
+<body style="width:1024px;margin:auto">
+<img th:src="@{/images/logo.jpg}" />
+	       <nav bgcolor="#CCFF00">
+				<a th:href="@{/}">首页</a> 
+			</nav>
+	<table border="1" width="100%">
+		<tr>
+			<td width="200px" valign="top">
+				<h3> 书籍列表</h3>
+				<nav>
+				  <ul>
+						<li>
+							按编码查询<input id="num_input"  type="text"   />
+                            <button onclick="queryByNum()">确定</button>
+						</li>
+						<li>
+							 按书名查询<input id="name_input"  type="text"  />
+							<button onclick="queryByname()">确定</button>
+						</li>
+					</ul>
+				</nav>
+			</td>
+			<td id="bookssArea">
+				<th:block th:fragment="bookssTable">	
+					<h2 align="center">书籍列表</h2>
+					<div  align="center">
+					<a th:href="@{/books/form}">添加书籍</a>
+					<a th:href="@{/books/visitorform}">借阅书籍</a>
+					</div>
+					<div align="right" th:inline="text">共找到 [[${count}]] 书籍</div>
+					<table border="1" align="center" width="100%">
+						<thead>
+							<tr bgcolor="green">
+								<th align="center">序号</th>
+								<th>编码</th>
+								<th>书名</th>
+								<th>出版日期</th>
+								<th>学科</th>
+								<th>学院</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="books,iterState:${books}">
+								<td th:text="${iterState.count}" align="center">1</td>
+								<td ><a target="_blank" th:href="@{'booksView/' + ${books.id}}" th:text="${books.num}">编码</a></td>
+								<td th:text="${books.bookname}">书名</td>
+								<td th:text="${books.publicationday}">出版日期</td>
+								<td th:text="${books.subjects.name}">学科</td>
+    					        <td th:text="${books.subjects.college}?${books.subjects.college.name}:null">所属学院</td>
+								<td>
+								<a th:href="@{/books/form(id=${books.id})}">修改</a>
+								<a th:href="'/books/delbooks/'+${books.id}">删除</a>
+								</td>
+							</tr> 
+						</tbody>
+					</table>
+					
+				</th:block>	
+			</td>
+		</tr>
+	</table>
+<footer th:replace="@{/common}::footer" ></footer>
+<script >
+//按学号查询的javascript函数
+function queryByNum(){
+	//用jquery得到输入框学号
+	var num = 
+	//console.debug(num);
+	//jquery ajax load请求,提交到 /books/queryByNum/{2015001}
+	$("#bookssArea").load("queryByNum/"+$("#num_input").val());
+}
+
+function queryByname(){
+	//用jquery得到输入框学号
+
+	//console.debug(num);
+	//jquery ajax load请求,提交到 /books/queryByTel/{2015001}
+		var name = $("#bookssArea").load("queryByname/"+$("#name_input").val());
+}
+
+
+</script>
+
+
+</body>
+</html>

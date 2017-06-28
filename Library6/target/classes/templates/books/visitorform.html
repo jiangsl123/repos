@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>书籍表单</title>
+</head>
+<body style="width:1024px;margin:auto">
+		<header th:replace="@{/common}::header" ></header>
+		<div align="center">
+		<form th:action="@{/books/visitorform}" method="post"  th:object="${brrow}">
+		<input type="hidden" name="id"  />
+		借阅数量<input type="text"  name="num" />
+		<div>
+		借阅人姓名<input type="text"  name="brrowname" />
+		</div>
+		<div>
+		借阅书籍<input type="text"  name="brrowbook" />
+		</div>
+		<input type="submit" />
+		</form>
+		</div>
+	<footer th:replace="@{/common}::footer" ></footer>
+</body>
+</html>

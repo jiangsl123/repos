@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>学科列表</title>
+</head>
+<body style="width:1024px;margin:auto">
+		<img th:src="@{/images/logo.jpg}" />
+			<nav bgcolor="#CCFF00">
+				<a th:href="@{/}">首页</a> 
+				<a th:href="@{/books/}">书籍</a>
+			</nav>
+		<h1 align="center">学科列表</h1>
+		<div align="center">
+		<a href="form/post/0" >添加学科</a>
+		</div>
+		<table border="1" align="center" width="100%">
+			<thead>
+				<tr bgcolor="green">
+					<th align="center">序号</th>
+					<th>ID</th>
+					<th>简称</th>
+					<th>名字</th>
+					<th>学院</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="subjects,iterState:${subjectsList}">
+					<td th:text="${iterState.count}" align="center">1</td>
+					<td th:text="${subjects.id}">id</td>
+					<td th:text="${subjects.code}">jk</td>
+					<td th:text="${subjects.name}">计科</td>
+					<td th:text="${subjects.college}?${subjects.college.name}:null">所属学院</td>
+					<td>
+					<a th:href="'/subjects/form/put/'+${subjects.id}">修改</a>
+					<a th:href="'/subjects/delsubjects/'+${subjects.id}">删除</a>
+					</td>
+					
+				</tr> 
+			</tbody>
+	</table>
+	<footer th:replace="@{/common}::footer" ></footer>
+</body>
+</html>

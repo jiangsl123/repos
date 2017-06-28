@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>共用部件</title> 
+    <meta charset="UTF-8" />
+</head>
+<body style="width:1024px;margin:auto;">
+		<header th:fragment="header">
+			<img th:src="@{/images/logo.jpg}" />
+			<nav bgcolor="#CCFF00">
+				<a th:href="@{/}">首页</a> 
+				<a th:href="@{/collegeView}">学院</a>
+				<a th:href="@{/subjects/}">学科</a>
+				<a th:href="@{/books/}">书籍</a>
+			</nav>
+			<hr />
+		</header>
+
+		<footer th:fragment="footer">
+			<hr />
+			<p> &copy; CopyRight 任想         Spring Boot 微框架   </p>
+		</footer>
+</body>
+</html>

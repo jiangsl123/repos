@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>学科表单</title>
+</head>
+<body style="width:1024px;margin:auto">
+		<header th:replace="@{/common}::header" ></header>
+		
+		<h2 align="center">学科表单</h2>
+		<form th:action="@{/subjects/subjects}" method="post" 
+				th:object="${subjects}" style="text-align:center" >
+			<input type="hidden" name="_method" th:value="${method}"/>
+			<input type="hidden" th:field="*{id}" />
+			<div style="margin:10px auto 10px auto">
+				<input type="text" th:field="*{code}" required="required" 
+					placeholder="请输入学科简称" value="jk" />
+			</div>
+			<div style="margin:10px auto 10px auto">
+				<input type="text" th:field="*{name}" required="required" 
+					placeholder="请输入学科名字" value="计科"	/>
+			</div>
+			<div style="margin:10px auto 10px auto">
+				<select th:field="*{college.id}" >
+					<option th:each="college:${colleges}" 
+							th:value="${college.id}" th:text="${college.name}">计算机学院</option>
+				</select>
+			</div>
+			
+			<div style="margin:10px auto 10px auto">
+				<input type="reset" />
+				<input type="submit" value="提交" />
+			</div>
+		</form>
+		<div style="text-align:center; margin-top:20px;">	
+<!-- 			<div th:if="${addResult} == 1" style="color:green;">Congraduation! 已成功添加学院</div> -->
+<!-- 			<div th:if="${addResult} == 0" style="color:red;">Sorry! 添加学院失败</div> -->
+<!-- 			<a href="/collegeView">返回学科列表页</a> -->
+		</div>
+	<footer th:replace="@{/common}::footer" ></footer>
+</body>
+</html>

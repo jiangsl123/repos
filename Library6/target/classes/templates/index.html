@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>图书室图书管理系统</title> 
+    <meta charset="UTF-8" />
+</head>
+<body style="width:1024px;margin:auto;">
+	<img th:src="@{/images/logo.jpg}" />
+		<div style="height:300px">
+		<h1 align="center">欢迎使用图书室图书管理系统！</h1>
+		<div align="center" >
+	
+		
+	  <div><h2>系统登录</h2></div>
+        <form th:action="@{index}" method="post" align="center" >
+		   <input type="text" name="admin_name"  required="required " placeholder="请输入账号" />
+
+			<input type="password"  name="password" required="required "  placeholder="请输入密码" />			
+			<input  type="submit" value="登录"/>
+			</form>
+		</div>
+		<div style="text-align:center; margin-top:20px;">	
+			<div th:if="${addResult} == 0" style="color:red;">
+			<script>alert("账号/密码错误")</script>
+			</div>
+		</div>
+		</div>
+		<footer th:replace="@{/common}::footer"></footer>
+		
+</body>
+</html>

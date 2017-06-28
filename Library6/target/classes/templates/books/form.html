@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>书籍表单</title>
+</head>
+<body style="width:1024px;margin:auto">
+		<header th:replace="@{/common}::header" ></header>
+		
+		<h2 align="center">书籍表单</h2>
+		<form th:action="@{/books/books}" method="post" 
+				th:object="${books}" enctype="multipart/form-data">
+			<input type="hidden" th:field="*{id}" />
+
+			<input type="text" th:field="*{num}" required="required" 
+					placeholder="请输入编码" value="编码" />
+
+			<input type="text" th:field="*{bookname}" required="required" 
+					placeholder="请输入书名" value="书名"	/>
+		
+			<input type="date" th:field="*{publicationday}" required="required" 
+					placeholder="请输入出版日期" value="出版日期"	/>
+			<div>
+			<select th:field="*{subjects.id}" >
+					<option th:each="subjects,iterState:${subjectsList}" 
+							th:value="${subjects.id}" th:text="${subjects.name}">学科</option>
+			</select>
+			</div>
+			<input type="submit" value="提交" />
+		</form>
+
+	<footer th:replace="@{/common}::footer" ></footer>
+</body>
+</html>
